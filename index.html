@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>text sentiment analysis test</h1>
+
+    <textarea placeholder="type something here" id="input" cols="80" rows="10"></textarea>
+    <button onclick="checkSentiment(document.getElementById('input').value)">check sentiment</button>
+
+    <script>
+        function checkSentiment(text) {
+            console.log(text)
+
+            const url = 'https://api.pretrained.ai/julia7hk/sentiment-analysis-test'
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer 64f63135234a4a4f00134f7a31d6aba6',
+                    'Content-Type': 'application/json',
+                    'mode': 'no-cors'              
+                },
+                body: {
+                    "language": "en",    
+                    "text": text
+                }
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data)
+            })
+            // ("is this working")
+        }
+    </script>
+</body>
+</html>
